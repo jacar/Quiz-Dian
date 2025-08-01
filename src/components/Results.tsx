@@ -18,11 +18,11 @@ const Results: React.FC<ResultsProps> = ({
   answers,
   questions,
   onRestart,
-  onBackToHome
-  timeTaken = 0
+  onBackToHome,
+  timeTaken = 0,
 }) => {
   const percentage = Math.round((score / totalQuestions) * 100);
-  
+
   const getGradeColor = (percentage: number) => {
     if (percentage >= 80) return 'text-green-600';
     if (percentage >= 60) return 'text-yellow-600';
@@ -49,7 +49,7 @@ const Results: React.FC<ResultsProps> = ({
       return `${secs}s`;
     }
   };
-  // Calculate results by theme
+
   const resultsByTheme = questions.reduce((acc, question, index) => {
     const theme = question.theme;
     if (!acc[theme]) {
@@ -160,7 +160,7 @@ const Results: React.FC<ResultsProps> = ({
             {questions.map((question, index) => {
               const isCorrect = answers[index] === question.correctAnswer;
               const userAnswer = answers[index];
-              
+
               return (
                 <div key={index} className={`border-l-4 pl-4 py-2 ${
                   isCorrect ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'
